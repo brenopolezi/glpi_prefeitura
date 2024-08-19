@@ -64,8 +64,8 @@ mysql_tzinfo_to_sql /usr/share/zoneinfo | sudo mysql -u root mysql
 
 
 # 2.8. Habilita session.cookie_httponly
-sudo sed -i 's/^session.cookie_httponly =/session.cookie_httponly = on/' /etc/php/8.1/fpm/php.ini
-sudo sed -i 's/^;date.timezone =/date.timezone = America\/Sao_Paulo/' /etc/php/8.1/fpm/php.ini
+sudo sed -i 's/^session.cookie_httponly =/session.cookie_httponly = on/' /etc/php/8.3/fpm/php.ini
+sudo sed -i 's/^;date.timezone =/date.timezone = America\/Sao_Paulo/' /etc/php/8.3/fpm/php.ini
 	
 
 # 2.9. Criar o virtualhost do glpi /etc/nginx/nginx.conf com o seguinte conteúdo (sobrescrever se existente):
@@ -97,7 +97,7 @@ http {
             }
             location ~ ^/index\.php$ {
                 fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:/run/php/php8.1-fpm.sock;
+                fastcgi_pass unix:/run/php/php8.3-fpm.sock;
                 fastcgi_index index.php;
                 include /etc/nginx/fastcgi.conf;
             }
@@ -107,7 +107,7 @@ http {
 
 
 # 2.12. Reinicia os serviços necessários
-sudo systemctl restart nginx php8.1-fpm mysql
+sudo systemctl restart nginx php8.3-fpm mysql
 
 
 # 2.13. Download do glpi
